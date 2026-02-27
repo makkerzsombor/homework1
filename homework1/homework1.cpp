@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 class Fragment {
 public:
@@ -41,10 +42,13 @@ public:
 		mDenomintator = other.mDenomintator;
 	}
 
-
-	void toString() 
+	std::string toString() 
 	{
-		std::cout << "A tort szamalaloja: " << mNumerator << ", nevezoje: " << mDenomintator << std::endl;
+		std::string s = "A tort szamlaloja: ";
+		s += std::to_string(mNumerator);
+		s += ", nevezoje: ";
+		s += std::to_string(mDenomintator);
+		return s;
 	}
 
 	int getNumerator() 
@@ -70,21 +74,22 @@ private:
 int main()
 {   
 	Fragment tort1 = Fragment(2, 3);
-	tort1.toString();
+	std::cout << tort1.toString() << std::endl;
 	std::cout << tort1.getNumerator() << " " << tort1.getDenominator() << std::endl;
 
 	Fragment tort2 = Fragment(2, 0);
-	tort2.toString();
+	std::cout << tort2.toString() << std::endl; // this needs to be fixed
 
-	Fragment tort3 = Fragment(5);
-	tort3.toString();
+	Fragment tort3 = Fragment(5);	
+	std::cout << tort3.toString() << std::endl;
+
 
 	Fragment tort4 = Fragment(1.25);
-	tort4.toString();
+	std::cout << tort4.toString() << std::endl;
 
 	std::cout << "tortbol tort" << std::endl;
 
 	Fragment tort5 = Fragment(tort1);
-	tort5.toString();
+	std::cout << tort5.toString() << std::endl;
 
 }
