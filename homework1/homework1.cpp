@@ -6,7 +6,7 @@ public:
 
 		if (!denominator)
 		{
-			std::cout << "Nem lehet a szamlalo nulla!" << std::endl;
+			std::cout << "Nem lehet a nevezo nulla!" << std::endl;
 		}
 		else
 		{
@@ -30,6 +30,11 @@ public:
 		return mDenomintator;
 	}
 
+	~Fragment() 
+	{
+		std::cout << "A tort megsemmisult!" << std::endl;
+	}
+
 private:	
 	int mNumerator;
 	int mDenomintator;
@@ -38,18 +43,12 @@ private:
 
 int main()
 {   
-	/*int szamlalo;
-	int nevezo;
-	std::cout << "Adja meg a tort szamlalojat!";
-	std::cin >> szamlalo;
-	
-	std::cout << "Adja meg a tort nevezojet!";
-	std::cin >> nevezo;*/
-
 	Fragment tort1 = Fragment(2, 3);
 	tort1.toString();
 	std::cout << tort1.getNumerator() << " " << tort1.getDenominator() << std::endl;
 
 	Fragment tort2 = Fragment(2, 0);
 	tort2.toString();
+
+
 }
