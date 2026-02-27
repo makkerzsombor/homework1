@@ -3,8 +3,16 @@
 class Fragment {
 public:
 	Fragment(const int numerator,const int denominator){
-		mNumerator = numerator;
-		mDenomintator = denominator;
+
+		if (!denominator)
+		{
+			std::cout << "Nem lehet a szamlalo nulla!" << std::endl;
+		}
+		else
+		{
+			mNumerator = numerator;
+			mDenomintator = denominator;
+		}		
 	}
 
 	void toString() 
@@ -41,4 +49,7 @@ int main()
 	Fragment tort1 = Fragment(2, 3);
 	tort1.toString();
 	std::cout << tort1.getNumerator() << " " << tort1.getDenominator() << std::endl;
+
+	Fragment tort2 = Fragment(2, 0);
+	tort2.toString();
 }
