@@ -8,6 +8,7 @@ int main()
 	std::cout << tort1.GetNumerator() << " " << tort1.GetDenominator() << std::endl;
 
 	Fragment tort2 = Fragment(2, 0);
+	std::cout << "Problematic: 2 and 0" << std::endl;
 	std::cout << tort2.ToString() << std::endl; // this needs to be fixed
 
 	Fragment tort3 = Fragment(5);	

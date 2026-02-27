@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fragment.cpp" />
     <ClCompile Include="homework1.cpp" />
   </ItemGroup>
   <ItemGroup>
