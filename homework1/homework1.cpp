@@ -42,7 +42,7 @@ public:
 		mDenomintator = other.mDenomintator;
 	}
 
-	std::string toString() 
+	std::string toString() const
 	{
 		std::string s = "A tort szamlaloja: ";
 		s += std::to_string(mNumerator);
@@ -51,12 +51,12 @@ public:
 		return s;
 	}
 
-	int getNumerator() 
+	int getNumerator() const
 	{
 		return mNumerator;
 	}
 
-	int getDenominator() 
+	int getDenominator() const
 	{
 		return mDenomintator;
 	}
