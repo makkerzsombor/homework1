@@ -42,7 +42,7 @@ public:
 		mDenomintator = other.mDenomintator;
 	}
 
-	std::string toString() const
+	std::string ToString() const
 	{
 		std::string s = "A tort szamlaloja: ";
 		s += std::to_string(mNumerator);
@@ -51,12 +51,12 @@ public:
 		return s;
 	}
 
-	int getNumerator() const
+	int GetNumerator() const
 	{
 		return mNumerator;
 	}
 
-	int getDenominator() const
+	int GetDenominator() const
 	{
 		return mDenomintator;
 	}
@@ -74,22 +74,22 @@ private:
 int main()
 {   
 	Fragment tort1 = Fragment(2, 3);
-	std::cout << tort1.toString() << std::endl;
-	std::cout << tort1.getNumerator() << " " << tort1.getDenominator() << std::endl;
+	std::cout << tort1.ToString() << std::endl;
+	std::cout << tort1.GetNumerator() << " " << tort1.GetDenominator() << std::endl;
 
 	Fragment tort2 = Fragment(2, 0);
-	std::cout << tort2.toString() << std::endl; // this needs to be fixed
+	std::cout << tort2.ToString() << std::endl; // this needs to be fixed
 
 	Fragment tort3 = Fragment(5);	
-	std::cout << tort3.toString() << std::endl;
+	std::cout << tort3.ToString() << std::endl;
 
 
 	Fragment tort4 = Fragment(1.25);
-	std::cout << tort4.toString() << std::endl;
+	std::cout << tort4.ToString() << std::endl;
 
 	std::cout << "tortbol tort" << std::endl;
 
 	Fragment tort5 = Fragment(tort1);
-	std::cout << tort5.toString() << std::endl;
+	std::cout << tort5.ToString() << std::endl;
 
 }
