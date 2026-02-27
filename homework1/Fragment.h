@@ -17,4 +17,7 @@ public:
 private:
 	int mNumerator;
 	int mDenomintator;
+
+	int DividedBy(const int a, const int b);
+	void DivideWithThis(const int a);
 };

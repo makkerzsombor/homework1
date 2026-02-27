@@ -22,4 +22,24 @@ int main()
 
 	Fragment tort5 = Fragment(tort1);
 	std::cout << tort5.ToString() << std::endl;
+
+	// Testing relative prim
+	Fragment tort6 = Fragment(2, 4);
+	std::cout << "uj ertekek:" << tort6.ToString() << std::endl;
+
+	Fragment tort7 = Fragment(4, 2);
+	std::cout << "uj ertekek:" << tort7.ToString() << std::endl;
+
+	Fragment tort8 = Fragment(5, 35);
+	std::cout << "uj ertekek:" << tort8.ToString() << std::endl;
+
+	Fragment tort9 = Fragment(6, 4);
+	std::cout << "uj ertekek:" << tort9.ToString() << std::endl;
+
+	Fragment tort10 = Fragment(0, 5);
+	std::cout << "uj ertekek:" << tort10.ToString() << std::endl;
+
+	Fragment tort11 = Fragment(-2, 4);
+	std::cout << "uj ertekek:" << tort11.ToString() << std::endl;
+
 }

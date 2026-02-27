@@ -1,14 +1,34 @@
 #include "Fragment.h"
+#include <cmath>
 
 Fragment::Fragment(const int numerator, const int denominator) {
 	if (!denominator)
 	{
 		std::cout << "Nem lehet a nevezo nulla!" << std::endl;
+		// Default value
+		mNumerator = 0;
+		mDenomintator = 1;
 	}
 	else
 	{
-		mNumerator = numerator;
-		mDenomintator = denominator;
+		// denominator is negative
+		if (denominator < 0) {
+			mNumerator = -numerator;
+			mDenomintator = -denominator;
+		}
+		else {
+			mNumerator = numerator;
+			mDenomintator = denominator;
+		}
+		int divider = DividedBy(mNumerator, mDenomintator);
+		//std::cout << "divider: " << divider << std::endl; // for testing
+		if (divider > 1)
+		{
+			//std::cout << "Alapok: " << std::endl; // for testing
+			//std::cout << ToString() << std::endl; // for testing
+			DivideWithThis(divider);
+			//std::cout << "Belep a dividerbe!" << std::endl << std::endl; // for testing
+		}	
 	}
 }
 
@@ -56,4 +76,29 @@ int Fragment::GetDenominator() const
 Fragment::~Fragment()
 {
 	std::cout << "A tort megsemmisult!" << std::endl;
+}
+
+int Fragment::DividedBy(const int a, const int b)
+{
+	int c = std::abs(a);
+	int d = std::abs(b);
+
+	if (c == 0)
+	{
+		return 1;
+	}
+
+	while (d) // d != 0; 
+	{
+		int temp = d; 
+		d = c % d; // maradék = c mod d
+		c = temp; // léptetés
+	}
+	return c;
+}
+
+void Fragment::DivideWithThis(const int a)
+{
+	mNumerator /= a;
+	mDenomintator /= a;
 }
