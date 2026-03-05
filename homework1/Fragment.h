@@ -21,3 +21,8 @@ private:
 	int DividedBy(const int a, const int b);
 	void DivideWithThis(const int a);
 };
+
+// Operators
+
+Fragment& operator+=(Fragment& current, const Fragment& other);
+Fragment& operator+(const Fragment& current, const Fragment& other);

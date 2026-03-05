@@ -102,3 +102,20 @@ void Fragment::DivideWithThis(const int a)
 	mNumerator /= a;
 	mDenomintator /= a;
 }
+
+// Operators
+
+Fragment& operator+=(Fragment& current, const Fragment& other)
+{
+	int newNumerator = (current.GetNumerator() * other.GetDenominator()) + (other.GetNumerator() * current.GetDenominator());
+	int newDenominator = current.GetDenominator() * other.GetDenominator();
+	current = Fragment(newNumerator, newDenominator);
+	return current;
+}
+
+Fragment& operator+(const Fragment& current, const Fragment& other) 
+{
+	Fragment result = current;
+	result += other;
+	return result;
+}
