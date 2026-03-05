@@ -32,3 +32,6 @@ Fragment operator-(const Fragment& current, const Fragment& other);
 
 Fragment& operator*=(Fragment& current, const Fragment& other);
 Fragment operator*(const Fragment& current, const Fragment& other);
+
+Fragment& operator/=(Fragment& current, const Fragment& other);
+Fragment operator/(const Fragment& current, const Fragment& other);

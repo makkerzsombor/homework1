@@ -69,4 +69,16 @@ int main()
 
 	std::cout << "(*) result5: " << result5.ToString() << std::endl; // 1/6
 	std::cout << "(*=) result6: " << result6.ToString() << std::endl; // 1/6
+
+	Fragment opTort7{ 1, 2 };
+	Fragment opTort8{ 1, 3 };
+
+	Fragment result7 = opTort7 / opTort8;
+	Fragment result8 = opTort7 /= opTort8;
+
+	std::cout << "(/) result7: " << result7.ToString() << std::endl; // 3/2
+	std::cout << "(/=) result8: " << result8.ToString() << std::endl; // 3/2
+
+	//
+
 }
