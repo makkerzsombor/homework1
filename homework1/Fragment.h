@@ -35,3 +35,15 @@ Fragment operator*(const Fragment& current, const Fragment& other);
 
 Fragment& operator/=(Fragment& current, const Fragment& other);
 Fragment operator/(const Fragment& current, const Fragment& other);
+
+// Comparison operators
+
+bool operator==(const Fragment& current, const Fragment& other);
+bool operator!=(const Fragment& current, const Fragment& other);
+
+bool operator<(const Fragment& current, const Fragment& other);
+bool operator<=(const Fragment& current, const Fragment& other);
+bool operator>(const Fragment& current, const Fragment& other);
+bool operator>=(const Fragment& current, const Fragment& other);
+
+

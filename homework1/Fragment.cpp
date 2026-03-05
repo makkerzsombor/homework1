@@ -158,3 +158,35 @@ Fragment operator/(const Fragment& current, const Fragment& other)
 	Fragment result = current;
 	return result /= other; // meghívja a /= -t
 }
+
+bool operator==(const Fragment& current, const Fragment& other)
+{
+	return (current.GetNumerator() == other.GetNumerator() &&  
+		current.GetDenominator() == other.GetDenominator());
+}
+
+bool operator!=(const Fragment& current, const Fragment& other)
+{
+	return !(current == other); // meghívja a == -t
+}
+
+bool operator<(const Fragment& current, const Fragment& other) 
+{
+	return (current.GetNumerator() * other.GetDenominator() <
+		current.GetDenominator() * other.GetNumerator());
+}
+
+bool operator<=(const Fragment& current, const Fragment& other) 
+{
+	return !(current > other); // meghívja a > -t
+}
+
+bool operator>(const Fragment& current, const Fragment& other) 
+{
+	return other < current; // meghívja a < -t csak megfordítva a bemeneteket
+}
+
+bool operator>=(const Fragment& current, const Fragment& other) 
+{
+	return !(current < other); // meghívja a < -t
+}

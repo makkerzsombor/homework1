@@ -42,43 +42,62 @@ int main()
 
 	// Operator checks
 
-	Fragment opTort1{ 1, 2 };
-	Fragment opTort2{ 1, 3 };
+	//Fragment opTort1{ 1, 2 };
+	//Fragment opTort2{ 1, 3 };
 
-	Fragment result1 = opTort1 + opTort2;
-	Fragment result2 = opTort1 += opTort2;
+	//Fragment result1 = opTort1 + opTort2;
+	//Fragment result2 = opTort1 += opTort2;
 
+	//std::cout << "(+) result1: " << result1.ToString() << std::endl; // 5/6
+	//std::cout << "(+=) result2: " << result1.ToString() << std::endl; // 5/6
 
-	std::cout << "(+) result1: " << result1.ToString() << std::endl; // 5/6
-	std::cout << "(+=) result2: " << result1.ToString() << std::endl; // 5/6
+	//Fragment opTort3{ 1, 2 };
+	//Fragment opTort4{ 1, 3 };
 
-	Fragment opTort3{ 1, 2 };
-	Fragment opTort4{ 1, 3 };
+	//Fragment result3 = opTort3 - opTort4;
+	//Fragment result4 = opTort3 -= opTort4;
 
-	Fragment result3 = opTort3 - opTort4;
-	Fragment result4 = opTort3 -= opTort4;
+	//std::cout << "(-) result3: " << result3.ToString() << std::endl; // 1/6
+	//std::cout << "(-=) result4: " << result4.ToString() << std::endl; // 1/6
 
-	std::cout << "(-) result3: " << result3.ToString() << std::endl; // 1/6
-	std::cout << "(-=) result4: " << result4.ToString() << std::endl; // 1/6
+	//Fragment opTort5{ 1, 2 };
+	//Fragment opTort6{ 1, 3 };
 
-	Fragment opTort5{ 1, 2 };
-	Fragment opTort6{ 1, 3 };
+	//Fragment result5 = opTort5 - opTort6;
+	//Fragment result6 = opTort5 -= opTort6;
 
-	Fragment result5 = opTort5 - opTort6;
-	Fragment result6 = opTort5 -= opTort6;
+	//std::cout << "(*) result5: " << result5.ToString() << std::endl; // 1/6
+	//std::cout << "(*=) result6: " << result6.ToString() << std::endl; // 1/6
 
-	std::cout << "(*) result5: " << result5.ToString() << std::endl; // 1/6
-	std::cout << "(*=) result6: " << result6.ToString() << std::endl; // 1/6
+	//Fragment opTort7{ 1, 2 };
+	//Fragment opTort8{ 1, 3 };
 
-	Fragment opTort7{ 1, 2 };
-	Fragment opTort8{ 1, 3 };
+	//Fragment result7 = opTort7 / opTort8;
+	//Fragment result8 = opTort7 /= opTort8;
 
-	Fragment result7 = opTort7 / opTort8;
-	Fragment result8 = opTort7 /= opTort8;
+	//std::cout << "(/) result7: " << result7.ToString() << std::endl; // 3/2
+	//std::cout << "(/=) result8: " << result8.ToString() << std::endl; // 3/2
 
-	std::cout << "(/) result7: " << result7.ToString() << std::endl; // 3/2
-	std::cout << "(/=) result8: " << result8.ToString() << std::endl; // 3/2
+	// Összehasonlítási operátorok
 
-	//
+	Fragment oOpTort1{ 1, 2 };
+	Fragment oOpTort2{ 2, 4 };
+	Fragment oOpTort3{ 2, 3 };
+	Fragment oOpTort4{ -1, 2 };
+
+	std::cout << "(==) 1/2 == 2/4: " << (oOpTort1 == oOpTort2) << std::endl; // 1 
+	std::cout << "(==) 1/2 == 2/3: " << (oOpTort1 == oOpTort3) << std::endl; // 0
+	std::cout << "(!=) 1/2 != 2/4: " << (oOpTort1 != oOpTort2) << std::endl; // 0
+	std::cout << "(!=) 1/2 != 2/3: " << (oOpTort1 != oOpTort3) << std::endl; // 1
+
+	std::cout << "(<)  1/2 < 2/3:  " << (oOpTort1 < oOpTort3) << std::endl;  // 1
+	std::cout << "(<)  2/3 < 1/2:  " << (oOpTort3 < oOpTort1) << std::endl;  // 0
+	std::cout << "(>)  2/3 > 1/2:  " << (oOpTort3 > oOpTort1) << std::endl;  // 1
+	std::cout << "(<) -1/2 < 1/2:  " << (oOpTort4 < oOpTort1) << std::endl;  // 1
+
+	std::cout << "(<=) 1/2 <= 2/4: " << (oOpTort1 <= oOpTort2) << std::endl; // 1
+	std::cout << "(<=) 1/2 <= 2/3: " << (oOpTort1 <= oOpTort3) << std::endl; // 1
+	std::cout << "(>=) 1/2 >= 2/4: " << (oOpTort1 >= oOpTort2) << std::endl; // 1
+	std::cout << "(>=) 1/2 >= -1/2:" << (oOpTort1 >= oOpTort4) << std::endl; // 1
 
 }
