@@ -118,7 +118,7 @@ Fragment& operator+=(Fragment& current, const Fragment& other)
 Fragment operator+(const Fragment& current, const Fragment& other) 
 {
 	Fragment result = current;
-	result += other;
+	result += other; // meghívja a += -t
 	return result;
 }
 
@@ -131,6 +131,21 @@ Fragment& operator-=(Fragment& current, const Fragment& other)
 Fragment operator-(const Fragment& current, const Fragment& other)
 {
 	Fragment result = current;
-	result -= other;
+	result -= other; // meghívja a -= -t
+	return result;
+}
+
+Fragment& operator*=(Fragment& current, const Fragment& other) 
+{
+	int newNumerator = current.GetNumerator() * other.GetNumerator();
+	int newDenominator = current.GetDenominator() * other.GetDenominator();
+	current = Fragment(newNumerator, newDenominator);
+	return current;
+}
+
+Fragment operator*(const Fragment& current, const Fragment& other) 
+{
+	Fragment result = current;
+	result *= other; // meghívja a *= -t
 	return result;
 }

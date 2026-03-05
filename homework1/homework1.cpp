@@ -61,4 +61,12 @@ int main()
 	std::cout << "(-) result3: " << result3.ToString() << std::endl; // 1/6
 	std::cout << "(-=) result4: " << result4.ToString() << std::endl; // 1/6
 
+	Fragment opTort5{ 1, 2 };
+	Fragment opTort6{ 1, 3 };
+
+	Fragment result5 = opTort5 - opTort6;
+	Fragment result6 = opTort5 -= opTort6;
+
+	std::cout << "(*) result5: " << result5.ToString() << std::endl; // 1/6
+	std::cout << "(*=) result6: " << result6.ToString() << std::endl; // 1/6
 }
