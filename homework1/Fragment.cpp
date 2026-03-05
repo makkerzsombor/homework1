@@ -41,11 +41,13 @@ Fragment::Fragment(const int numerator)
 Fragment::Fragment(const double decimal)
 {
 	int precision = 1000000;
-	mNumerator = decimal * precision;
+	mNumerator = std::round(decimal * precision);
 	mDenomintator = precision;
-	//std::cout << "At alakitva: " << getNumerator() << std::endl; // for testing
-	double vissza = static_cast<double>(mNumerator) / precision;
-	//std::cout << "a valodi erteke: " << vissza << std::endl; // for testing
+	int divider = DividedBy(mNumerator, mDenomintator);
+	if (divider > 1) 
+	{
+		DivideWithThis(divider);
+	}
 }
 
 Fragment::Fragment(const Fragment& other)
@@ -56,9 +58,8 @@ Fragment::Fragment(const Fragment& other)
 
 std::string Fragment::ToString() const
 {
-	std::string s = "A tort szamlaloja: ";
-	s += std::to_string(mNumerator);
-	s += ", nevezoje: ";
+	std::string s = std::to_string(mNumerator);
+	s += "/";
 	s += std::to_string(mDenomintator);
 	return s;
 }

@@ -60,4 +60,5 @@ int main()
 
 	std::cout << "(-) result3: " << result3.ToString() << std::endl; // 1/6
 	std::cout << "(-=) result4: " << result4.ToString() << std::endl; // 1/6
+
 }
