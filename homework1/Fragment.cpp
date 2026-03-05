@@ -75,6 +75,7 @@ int Fragment::GetDenominator() const
 
 Fragment::~Fragment()
 {
+	//std::cout << GetNumerator() << "/" << GetDenominator() << std::endl; // for testing
 	std::cout << "A tort megsemmisult!" << std::endl;
 }
 
@@ -113,9 +114,22 @@ Fragment& operator+=(Fragment& current, const Fragment& other)
 	return current;
 }
 
-Fragment& operator+(const Fragment& current, const Fragment& other) 
+Fragment operator+(const Fragment& current, const Fragment& other) 
 {
 	Fragment result = current;
 	result += other;
+	return result;
+}
+
+Fragment& operator-=(Fragment& current, const Fragment& other)
+{
+	Fragment negativeOther = Fragment(-other.GetNumerator(), other.GetDenominator());
+	return current += negativeOther;
+}
+
+Fragment operator-(const Fragment& current, const Fragment& other)
+{
+	Fragment result = current;
+	result -= other;
 	return result;
 }
