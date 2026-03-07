@@ -102,22 +102,40 @@ int main()
 
 	// Konverziós operátorok
 
-	Fragment konvTort(5, 2);
+	//Fragment konvTort(5, 2);
 
-	double dErtek = static_cast<double>(konvTort);
-	std::cout << "double (5/2): " << dErtek << std::endl; // 2.5
+	//double dErtek = static_cast<double>(konvTort);
+	//std::cout << "double (5/2): " << dErtek << std::endl; // 2.5
 
-	int iErtek = static_cast<int>(konvTort);
-	std::cout << "int (5/2): " << iErtek << std::endl; // 2
+	//int iErtek = static_cast<int>(konvTort);
+	//std::cout << "int (5/2): " << iErtek << std::endl; // 2
 
-	std::string sErtek = static_cast<std::string>(konvTort);
-	std::cout << "string: " << sErtek << std::endl; // 5/2
+	//std::string sErtek = static_cast<std::string>(konvTort);
+	//std::cout << "string: " << sErtek << std::endl; // 5/2
 
-	Fragment nullaTort(0, 5);	
+	//Fragment nullaTort(0, 5);	
 
-	bool bIgaz = static_cast<bool>(konvTort);
-	bool bHamis = static_cast<bool>(nullaTort);
+	//bool bIgaz = static_cast<bool>(konvTort);
+	//bool bHamis = static_cast<bool>(nullaTort);
 
-	std::cout << "bool (5/2): " << bIgaz << std::endl;  // 1
-	std::cout << "bool (0/5): " << bHamis << std::endl; // 0
+	//std::cout << "bool (5/2): " << bIgaz << std::endl;  // 1
+	//std::cout << "bool (0/5): " << bHamis << std::endl; // 0
+
+	// IOStream operátorok
+
+    Fragment kiirTort(10, 4); 
+    std::cout << "Uj kiiras: " << kiirTort << std::endl;
+
+    Fragment beolvasottTort(0); 
+    
+    std::cout << "\nKerlek, adj meg egy tortet (pl. 4/6 formaban): ";
+    std::cin >> beolvasottTort;
+
+    if (std::cin.fail()) {
+        std::cout << "Hibas formatum!" << std::endl;
+    } else {
+        std::cout << "A beolvasott tort: " << beolvasottTort << std::endl;
+    }
+
+
 }

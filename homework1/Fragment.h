@@ -26,7 +26,6 @@ private:
 	int DividedBy(const int a, const int b);
 	void DivideWithThis(const int a);
 };
-
 // Operators
 
 Fragment& operator+=(Fragment& current, const Fragment& other);
@@ -41,7 +40,7 @@ Fragment operator*(const Fragment& current, const Fragment& other);
 Fragment& operator/=(Fragment& current, const Fragment& other);
 Fragment operator/(const Fragment& current, const Fragment& other);
 
-// Comparison operators
+// Comparison Operators
 
 bool operator==(const Fragment& current, const Fragment& other);
 bool operator!=(const Fragment& current, const Fragment& other);
@@ -51,4 +50,7 @@ bool operator<=(const Fragment& current, const Fragment& other);
 bool operator>(const Fragment& current, const Fragment& other);
 bool operator>=(const Fragment& current, const Fragment& other);
 
+// IOStream Operators
 
+std::ostream& operator<<(std::ostream& os, const Fragment& fragment);
+std::istream& operator>>(std::istream& is, Fragment& fragment);

@@ -58,10 +58,7 @@ Fragment::Fragment(const Fragment& other)
 
 std::string Fragment::ToString() const
 {
-	std::string s = std::to_string(mNumerator);
-	s += "/";
-	s += std::to_string(mDenomintator);
-	return s;
+	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
 }
 
 int Fragment::GetNumerator() const
@@ -191,6 +188,8 @@ bool operator>=(const Fragment& current, const Fragment& other)
 	return !(current < other); // meghívja a < -t
 }
 
+// Converion Operators
+
 Fragment::operator int() const
 {
 	return mNumerator / mDenomintator;
@@ -209,4 +208,28 @@ Fragment::operator bool() const
 Fragment::operator std::string() const
 {
 	return ToString();
+}
+
+// IOStream Operators
+
+std::ostream& operator<<(std::ostream& os, const Fragment& fragment)
+{
+	os << fragment.ToString();
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, Fragment& fragment)
+{
+	int num = 0, den = 1;
+	char slash; 
+
+	is >> num >> slash >> den;
+
+	if (slash == '/') {		
+		fragment = Fragment(num, den);
+	}
+	else {
+		is.setstate(std::ios::failbit);
+	}
+	return is;
 }
