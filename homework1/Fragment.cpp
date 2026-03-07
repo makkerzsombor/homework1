@@ -1,5 +1,6 @@
 #include "Fragment.h"
 #include <cmath>
+#include <sstream>
 
 Fragment::Fragment(const int numerator, const int denominator) {
 	if (!denominator)
@@ -41,13 +42,9 @@ Fragment::Fragment(const int numerator)
 Fragment::Fragment(const double decimal)
 {
 	int precision = 1000000;
-	mNumerator = std::round(decimal * precision);
-	mDenomintator = precision;
-	int divider = DividedBy(mNumerator, mDenomintator);
-	if (divider > 1) 
-	{
-		DivideWithThis(divider);
-	}
+	int num = std::round(decimal * precision);
+	int den = precision;
+	*this = Fragment(num, den);
 }
 
 Fragment::Fragment(const Fragment& other)
@@ -232,4 +229,19 @@ std::istream& operator>>(std::istream& is, Fragment& fragment)
 		is.setstate(std::ios::failbit);
 	}
 	return is;
+}
+
+Fragment::Fragment(const std::string& str)
+{
+	std::stringstream ss(str);
+	int num = 0;
+	int den = 1;
+	char slash;
+
+	ss >> num;
+
+	if (ss >> slash && slash == '/') {
+		ss >> den;
+	}
+	*this = Fragment(num, den);
 }

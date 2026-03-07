@@ -18,6 +18,8 @@ public:
 	explicit operator double() const;
 	explicit operator bool() const;
 	explicit operator std::string() const;
+	// Parse constructor
+	Fragment(const std::string& str);
 
 private:
 	int mNumerator;
