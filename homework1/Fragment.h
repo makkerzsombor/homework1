@@ -13,6 +13,11 @@ public:
 	int GetNumerator() const;
 	int GetDenominator() const;
 	~Fragment();
+	// Conversion operators
+	explicit operator int() const;
+	explicit operator double() const;
+	explicit operator bool() const;
+	explicit operator std::string() const;
 
 private:
 	int mNumerator;

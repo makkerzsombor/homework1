@@ -190,3 +190,23 @@ bool operator>=(const Fragment& current, const Fragment& other)
 {
 	return !(current < other); // meghívja a < -t
 }
+
+Fragment::operator int() const
+{
+	return mNumerator / mDenomintator;
+}
+
+Fragment::operator double() const
+{
+	return static_cast<double>(mNumerator) / mDenomintator;
+}
+
+Fragment::operator bool() const
+{
+	return mNumerator != 0;
+}
+
+Fragment::operator std::string() const
+{
+	return ToString();
+}

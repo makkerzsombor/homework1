@@ -80,24 +80,44 @@ int main()
 
 	// Összehasonlítási operátorok
 
-	Fragment oOpTort1{ 1, 2 };
-	Fragment oOpTort2{ 2, 4 };
-	Fragment oOpTort3{ 2, 3 };
-	Fragment oOpTort4{ -1, 2 };
+	//Fragment oOpTort1{ 1, 2 };
+	//Fragment oOpTort2{ 2, 4 };
+	//Fragment oOpTort3{ 2, 3 };
+	//Fragment oOpTort4{ -1, 2 };
 
-	std::cout << "(==) 1/2 == 2/4: " << (oOpTort1 == oOpTort2) << std::endl; // 1 
-	std::cout << "(==) 1/2 == 2/3: " << (oOpTort1 == oOpTort3) << std::endl; // 0
-	std::cout << "(!=) 1/2 != 2/4: " << (oOpTort1 != oOpTort2) << std::endl; // 0
-	std::cout << "(!=) 1/2 != 2/3: " << (oOpTort1 != oOpTort3) << std::endl; // 1
+	//std::cout << "(==) 1/2 == 2/4: " << (oOpTort1 == oOpTort2) << std::endl; // 1 
+	//std::cout << "(==) 1/2 == 2/3: " << (oOpTort1 == oOpTort3) << std::endl; // 0
+	//std::cout << "(!=) 1/2 != 2/4: " << (oOpTort1 != oOpTort2) << std::endl; // 0
+	//std::cout << "(!=) 1/2 != 2/3: " << (oOpTort1 != oOpTort3) << std::endl; // 1
 
-	std::cout << "(<)  1/2 < 2/3:  " << (oOpTort1 < oOpTort3) << std::endl;  // 1
-	std::cout << "(<)  2/3 < 1/2:  " << (oOpTort3 < oOpTort1) << std::endl;  // 0
-	std::cout << "(>)  2/3 > 1/2:  " << (oOpTort3 > oOpTort1) << std::endl;  // 1
-	std::cout << "(<) -1/2 < 1/2:  " << (oOpTort4 < oOpTort1) << std::endl;  // 1
+	//std::cout << "(<)  1/2 < 2/3:  " << (oOpTort1 < oOpTort3) << std::endl;  // 1
+	//std::cout << "(<)  2/3 < 1/2:  " << (oOpTort3 < oOpTort1) << std::endl;  // 0
+	//std::cout << "(>)  2/3 > 1/2:  " << (oOpTort3 > oOpTort1) << std::endl;  // 1
+	//std::cout << "(<) -1/2 < 1/2:  " << (oOpTort4 < oOpTort1) << std::endl;  // 1
 
-	std::cout << "(<=) 1/2 <= 2/4: " << (oOpTort1 <= oOpTort2) << std::endl; // 1
-	std::cout << "(<=) 1/2 <= 2/3: " << (oOpTort1 <= oOpTort3) << std::endl; // 1
-	std::cout << "(>=) 1/2 >= 2/4: " << (oOpTort1 >= oOpTort2) << std::endl; // 1
-	std::cout << "(>=) 1/2 >= -1/2:" << (oOpTort1 >= oOpTort4) << std::endl; // 1
+	//std::cout << "(<=) 1/2 <= 2/4: " << (oOpTort1 <= oOpTort2) << std::endl; // 1
+	//std::cout << "(<=) 1/2 <= 2/3: " << (oOpTort1 <= oOpTort3) << std::endl; // 1
+	//std::cout << "(>=) 1/2 >= 2/4: " << (oOpTort1 >= oOpTort2) << std::endl; // 1
+	//std::cout << "(>=) 1/2 >= -1/2:" << (oOpTort1 >= oOpTort4) << std::endl; // 1
 
+	// Konverziós operátorok
+
+	Fragment konvTort(5, 2);
+
+	double dErtek = static_cast<double>(konvTort);
+	std::cout << "double (5/2): " << dErtek << std::endl; // 2.5
+
+	int iErtek = static_cast<int>(konvTort);
+	std::cout << "int (5/2): " << iErtek << std::endl; // 2
+
+	std::string sErtek = static_cast<std::string>(konvTort);
+	std::cout << "string: " << sErtek << std::endl; // 5/2
+
+	Fragment nullaTort(0, 5);	
+
+	bool bIgaz = static_cast<bool>(konvTort);
+	bool bHamis = static_cast<bool>(nullaTort);
+
+	std::cout << "bool (5/2): " << bIgaz << std::endl;  // 1
+	std::cout << "bool (0/5): " << bHamis << std::endl; // 0
 }
