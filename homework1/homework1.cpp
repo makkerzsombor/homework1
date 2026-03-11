@@ -23,7 +23,7 @@ int main()
     Fraction tort4(1.25);
     std::cout << "Double-bol (1.25): " << tort4 << std::endl;
 
-    Fraction tort5 = tort1; // Így sokkal szebb a másoló konstruktor hívása
+    Fraction tort5 = tort1;
     std::cout << "Tortbol tort (2/3): " << tort5 << std::endl;
 
     Fraction tort6(2, 4);
@@ -45,7 +45,7 @@ int main()
     Fraction opTort2(1, 3);
 
     Fraction result1 = opTort1 + opTort2;
-    Fraction result2 = opTort1; result2 += opTort2; // Így teszteljük helyesen a += operátort
+    Fraction result2 = opTort1; result2 += opTort2;
 
     std::cout << "(+) result1: " << result1 << std::endl; // 5/6
     std::cout << "(+=) result2: " << result2 << std::endl; // 5/6
@@ -62,7 +62,6 @@ int main()
     Fraction opTort5(1, 2);
     Fraction opTort6(1, 3);
 
-    // Itt a szorzást kell használni, javítva!
     Fraction result5 = opTort5 * opTort6;
     Fraction result6 = opTort5; result6 *= opTort6;
 

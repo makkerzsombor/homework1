@@ -6,94 +6,96 @@
 
 Fraction::Fraction(const int numerator, const int denominator)
 	: mNumerator(denominator < 0 ? -numerator : numerator),
-	mDenomintator(denominator < 0 ? -denominator : denominator)
+	mDenominator(denominator < 0 ? -denominator : denominator)
 {
 	if (denominator == 0)
 	{
 		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
-	int divider = std::gcd(mNumerator, mDenomintator);
+	int divider = std::gcd(mNumerator, mDenominator);
 	if (divider > 1)
 	{
 		mNumerator /= divider;
-		mDenomintator /= divider;
+		mDenominator /= divider;
 	}
 }
 
 Fraction::Fraction(const int numerator)
-	: mNumerator(numerator), mDenomintator(1) {}
+	: mNumerator(numerator), mDenominator(1) {
+}
 
 Fraction::Fraction(const double decimal)
-	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {}
-
-// Operators
+	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {
+}
+// Operators 
 
 Fraction& Fraction::operator+=(const Fraction& other)
 {
-	int newNumerator = (mNumerator * other.mDenomintator) + (other.mNumerator * mDenomintator);
-	int newDenominator = mDenomintator * other.mDenomintator;
+	int newNumerator = (mNumerator * other.mDenominator) + (other.mNumerator * mDenominator);
+	int newDenominator = mDenominator * other.mDenominator;
 	*this = Fraction(newNumerator, newDenominator);
 	return *this;
 }
 
-Fraction operator+(const Fraction& current, const Fraction& other)
+Fraction& Fraction::operator-=(const Fraction& other)
 {
-	Fraction result = current;
-	return result += other; // meghívja a += -t
-}
-
-Fraction& Fraction::operator-=( const Fraction& other)
-{
-	Fraction negativeOther(-other.mNumerator, other.mDenomintator);
+	Fraction negativeOther(-other.mNumerator, other.mDenominator);
 	return *this += negativeOther;
-}
-
-Fraction operator-(const Fraction& current, const Fraction& other)
-{
-	Fraction result = current;
-	return result -= other; // meghívja a -= -t
 }
 
 Fraction& Fraction::operator*=(const Fraction& other)
 {
 	int newNumerator = mNumerator * other.mNumerator;
-	int newDenominator = mDenomintator * other.mDenomintator;
+	int newDenominator = mDenominator * other.mDenominator;
 	*this = Fraction(newNumerator, newDenominator);
 	return *this;
 }
 
-Fraction operator*(const Fraction& current, const Fraction& other)
+Fraction& Fraction::operator/=(const Fraction& other)
 {
-	Fraction result = current;
-	return result *= other; // meghívja a *= -t
-}
-
-Fraction& Fraction::operator/=( const Fraction& other)
-{
-	Fraction reciprocalOther(other.mDenomintator, other.mNumerator);
+	Fraction reciprocalOther(other.mDenominator, other.mNumerator);
 	return *this *= reciprocalOther;
 }
 
-Fraction operator/(const Fraction& current, const Fraction& other)
+Fraction Fraction::operator+(const Fraction& other) const
 {
-	Fraction result = current;
-	return result /= other; // meghívja a /= -t
+	Fraction result = *this;
+	return result += other;
 }
+
+Fraction Fraction::operator-(const Fraction& other) const
+{
+	Fraction result = *this;
+	return result -= other;
+}
+
+Fraction Fraction::operator*(const Fraction& other) const
+{
+	Fraction result = *this;
+	return result *= other;
+}
+
+Fraction Fraction::operator/(const Fraction& other) const
+{
+	Fraction result = *this;
+	return result /= other;
+}
+
+// Comparison Operators
 
 bool Fraction::operator==(const Fraction& other) const
 {
-	// Mivel tagfüggvény, közvetlenül elérjük a saját és a másik privát tagjait is
-	return (mNumerator == other.mNumerator && mDenomintator == other.mDenomintator);
+	return (mNumerator == other.mNumerator && mDenominator == other.mDenominator);
 }
 
 bool Fraction::operator!=(const Fraction& other) const
 {
-	return !(*this == other); // Az aktuális objektumot (*this) hasonlítjuk a másikhoz
+	return !(*this == other);
 }
 
 bool Fraction::operator<(const Fraction& other) const
 {
-	return (mNumerator * other.mDenomintator < mDenomintator * other.mNumerator);
+	return (mNumerator * other.mDenominator < mDenominator * other.mNumerator);
 }
 
 bool Fraction::operator<=(const Fraction& other) const
@@ -103,24 +105,23 @@ bool Fraction::operator<=(const Fraction& other) const
 
 bool Fraction::operator>(const Fraction& other) const
 {
-	return other < *this; // Megfordítjuk a relációt
+	return other < *this;
 }
 
 bool Fraction::operator>=(const Fraction& other) const
 {
 	return !(*this < other);
 }
-
-// Converion Operators
+// Conversion Operators
 
 Fraction::operator int() const
 {
-	return mNumerator / mDenomintator;
+	return mNumerator / mDenominator;
 }
 
 Fraction::operator double() const
 {
-	return static_cast<double>(mNumerator) / mDenomintator;
+	return static_cast<double>(mNumerator) / mDenominator;
 }
 
 Fraction::operator bool() const
@@ -130,33 +131,8 @@ Fraction::operator bool() const
 
 Fraction::operator std::string() const
 {
-	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
+	return std::to_string(mNumerator) + "/" + std::to_string(mDenominator);
 }
-
-// IOStream Operators
-
-std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
-{
-	os << static_cast<std::string>(fragment);
-	return os;
-}
-
-std::istream& operator>>(std::istream& is, Fraction& fragment)
-{
-	int num = 0, den = 1;
-	char slash; 
-
-	is >> num >> slash >> den;
-
-	if (slash == '/') {		
-		fragment = Fraction(num, den);
-	}
-	else {
-		is.setstate(std::ios::failbit);
-	}
-	return is;
-}
-
 Fraction Fraction::Parse(const std::string& str)
 {
 	std::stringstream ss(str);
@@ -172,4 +148,26 @@ Fraction Fraction::Parse(const std::string& str)
 		throw std::invalid_argument("Hiba a parszolasnal: A nevezo nem lehet nulla!");
 	}
 	return Fraction(num, den);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
+{
+	os << static_cast<std::string>(fragment);
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, Fraction& fragment)
+{
+	int num = 0, den = 1;
+	char slash;
+
+	is >> num >> slash >> den;
+
+	if (slash == '/') {
+		fragment = Fraction(num, den);
+	}
+	else {
+		is.setstate(std::ios::failbit);
+	}
+	return is;
 }

@@ -4,28 +4,34 @@
 #include <string>
 
 class Fraction {
-public:	
-	Fraction(const int numerator, const int denominator); // constructor with two numbers	
-	Fraction(const int numerator); // constructor with one number	
-	Fraction(const double decimal); // constructor with decimal
-	// Conversion operators
+public:
+	// Constructors
+	Fraction(const int numerator, const int denominator);
+	Fraction(const int numerator);
+	Fraction(const double decimal);
+
+	// Converion Operators
 	explicit operator int() const;
 	explicit operator double() const;
 	explicit operator bool() const;
-	explicit operator std::string() const;
-	// Parse constructor
+	explicit operator std::string() const;	
 	static Fraction Parse(const std::string& str);
 
-	// Binary Arithmetic operators
+	// Operators
 	Fraction& operator+=(const Fraction& other);
 	Fraction& operator-=(const Fraction& other);
 	Fraction& operator*=(const Fraction& other);
 	Fraction& operator/=(const Fraction& other);
 
+	// Binary Arithmetic Operators
+	Fraction operator+(const Fraction& other) const;
+	Fraction operator-(const Fraction& other) const;
+	Fraction operator*(const Fraction& other) const;
+	Fraction operator/(const Fraction& other) const;
+
 	// Comparison Operators
 	bool operator==(const Fraction& other) const;
 	bool operator!=(const Fraction& other) const;
-
 	bool operator<(const Fraction& other) const;
 	bool operator<=(const Fraction& other) const;
 	bool operator>(const Fraction& other) const;
@@ -33,14 +39,8 @@ public:
 
 private:
 	int mNumerator;
-	int mDenomintator;
+	int mDenominator; 
 };
-
-// Operators (szimmetria miatt maradnak)
-Fraction operator+(const Fraction& current, const Fraction& other);
-Fraction operator-(const Fraction& current, const Fraction& other);
-Fraction operator*(const Fraction& current, const Fraction& other);
-Fraction operator/(const Fraction& current, const Fraction& other);
 
 // IOStream Operators
 std::ostream& operator<<(std::ostream& os, const Fraction& fragment);
