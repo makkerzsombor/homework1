@@ -13,7 +13,6 @@ Fraction::Fraction(const int numerator, const int denominator)
 		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
 	int divider = std::gcd(mNumerator, mDenomintator);
-
 	if (divider > 1)
 	{
 		mNumerator /= divider;
@@ -30,16 +29,6 @@ Fraction::Fraction(const double decimal)
 std::string Fraction::ToString() const
 {
 	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
-}
-
-int Fraction::GetNumerator() const
-{
-	return mNumerator;
-}
-
-int Fraction::GetDenominator() const
-{
-	return mDenomintator;
 }
 // Operators
 

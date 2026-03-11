@@ -5,7 +5,6 @@ int main()
 {   
 	Fraction tort1 = Fraction(2, 3);
 	std::cout << tort1.ToString() << std::endl;
-	std::cout << tort1.GetNumerator() << " " << tort1.GetDenominator() << std::endl;
 
 	//Fraction tort2 = Fraction(2, 0);
 	//std::cout << "Problematic: 2 and 0" << std::endl;
