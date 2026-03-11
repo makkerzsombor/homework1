@@ -157,21 +157,19 @@ std::istream& operator>>(std::istream& is, Fraction& fragment)
 	return is;
 }
 
-Fraction::Fraction(const std::string& str)
+Fraction Fraction::Parse(const std::string& str)
 {
 	std::stringstream ss(str);
 	int num = 0;
 	int den = 1;
 	char slash;
-
 	ss >> num;
 
 	if (ss >> slash && slash == '/') {
 		ss >> den;
 	}
-
 	if (den == 0) {
 		throw std::invalid_argument("Hiba a parszolasnal: A nevezo nem lehet nulla!");
 	}
-	*this = Fraction(num, den);
+	return Fraction(num, den);
 }

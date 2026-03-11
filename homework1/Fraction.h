@@ -14,7 +14,7 @@ public:
 	explicit operator bool() const;
 	explicit operator std::string() const;
 	// Parse constructor
-	Fraction(const std::string& str);
+	static Fraction Parse(const std::string& str);
 
 	// Binary Arithmetic operators
 	Fraction& operator+=(const Fraction& other);

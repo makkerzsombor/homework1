@@ -131,21 +131,20 @@ int main()
         std::cout << "A beolvasott tort: " << beolvasottTort << std::endl;
     }
 
-    Fraction strTort1("6/8");
+    Fraction strTort1 = Fraction::Parse("6/8");
     std::cout << "A '6/8' sztringbol tort: " << strTort1 << std::endl; // 3/4
 
-    Fraction strTort2("5/-2");
+    Fraction strTort2 = Fraction::Parse("5/-2");
     std::cout << "Az '5/-2' sztringbol tort: " << strTort2 << std::endl; // -5/2
 
-    Fraction strTort3("42");
+    Fraction strTort3 = Fraction::Parse("42");
     std::cout << "A '42' sztringbol tort: " << strTort3 << std::endl; // 42/1
 
     try {
-        Fraction strTort4("7/0");
+        Fraction strTort4 = Fraction::Parse("7/0");
         std::cout << "A '7/0' sztringbol: " << strTort4 << std::endl;
     }
     catch (const std::invalid_argument& e) {
         std::cout << "Hiba elkapva a parszolasnal: " << e.what() << std::endl;
     }
-    return 0;
 }
