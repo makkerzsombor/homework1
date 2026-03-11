@@ -27,9 +27,6 @@ Fraction::Fraction(const int numerator)
 Fraction::Fraction(const double decimal)
 	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {}
 
-Fraction::Fraction(const Fraction& other)
-	: mNumerator(other.mNumerator), mDenomintator(other.mDenomintator) {}
-
 std::string Fraction::ToString() const
 {
 	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
