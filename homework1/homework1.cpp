@@ -7,9 +7,9 @@ int main()
 	std::cout << tort1.ToString() << std::endl;
 	std::cout << tort1.GetNumerator() << " " << tort1.GetDenominator() << std::endl;
 
-	Fraction tort2 = Fraction(2, 0);
-	std::cout << "Problematic: 2 and 0" << std::endl;
-	std::cout << tort2.ToString() << std::endl;
+	//Fraction tort2 = Fraction(2, 0);
+	//std::cout << "Problematic: 2 and 0" << std::endl;
+	//std::cout << tort2.ToString() << std::endl;
 
 	Fraction tort3 = Fraction(5);
 	std::cout << tort3.ToString() << std::endl;

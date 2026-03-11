@@ -1,35 +1,27 @@
 #include "Fraction.h"
 #include <cmath>
 #include <sstream>
+#include <stdexcept>
 
-Fraction::Fraction(const int numerator, const int denominator) {
-	if (!denominator)
-	{
-		std::cout << "Nem lehet a nevezo nulla!" << std::endl;
-		// Default value
-		mNumerator = 0;
-		mDenomintator = 1;
+Fraction::Fraction(const int numerator, const int denominator)
+{
+	if (denominator == 0)
+	{		
+		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
-	else
+	if (denominator < 0) {
+		mNumerator = -numerator;
+		mDenomintator = -denominator;
+	}
+	else {
+		mNumerator = numerator;
+		mDenomintator = denominator;
+	}
+
+	int divider = DividedBy(mNumerator, mDenomintator);
+	if (divider > 1)
 	{
-		// denominator is negative
-		if (denominator < 0) {
-			mNumerator = -numerator;
-			mDenomintator = -denominator;
-		}
-		else {
-			mNumerator = numerator;
-			mDenomintator = denominator;
-		}
-		int divider = DividedBy(mNumerator, mDenomintator);
-		//std::cout << "divider: " << divider << std::endl; // for testing
-		if (divider > 1)
-		{
-			//std::cout << "Alapok: " << std::endl; // for testing
-			//std::cout << ToString() << std::endl; // for testing
-			DivideWithThis(divider);
-			//std::cout << "Belep a dividerbe!" << std::endl << std::endl; // for testing
-		}	
+		DivideWithThis(divider);
 	}
 }
 
