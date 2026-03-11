@@ -228,5 +228,9 @@ Fraction::Fraction(const std::string& str)
 	if (ss >> slash && slash == '/') {
 		ss >> den;
 	}
+
+	if (den == 0) {
+		throw std::invalid_argument("Hiba a parszolasnal: A nevezo nem lehet nulla!");
+	}
 	*this = Fraction(num, den);
 }
