@@ -147,36 +147,35 @@ Fraction operator/(const Fraction& current, const Fraction& other)
 	return result /= other; // meghívja a /= -t
 }
 
-bool operator==(const Fraction& current, const Fraction& other)
+bool Fraction::operator==(const Fraction& other) const
 {
-	return (current.GetNumerator() == other.GetNumerator() &&  
-		current.GetDenominator() == other.GetDenominator());
+	// Mivel tagfüggvény, közvetlenül elérjük a saját és a másik privát tagjait is
+	return (mNumerator == other.mNumerator && mDenomintator == other.mDenomintator);
 }
 
-bool operator!=(const Fraction& current, const Fraction& other)
+bool Fraction::operator!=(const Fraction& other) const
 {
-	return !(current == other); // meghívja a == -t
+	return !(*this == other); // Az aktuális objektumot (*this) hasonlítjuk a másikhoz
 }
 
-bool operator<(const Fraction& current, const Fraction& other)
+bool Fraction::operator<(const Fraction& other) const
 {
-	return (current.GetNumerator() * other.GetDenominator() <
-		current.GetDenominator() * other.GetNumerator());
+	return (mNumerator * other.mDenomintator < mDenomintator * other.mNumerator);
 }
 
-bool operator<=(const Fraction& current, const Fraction& other)
+bool Fraction::operator<=(const Fraction& other) const
 {
-	return !(current > other); // meghívja a > -t
+	return !(*this > other);
 }
 
-bool operator>(const Fraction& current, const Fraction& other)
+bool Fraction::operator>(const Fraction& other) const
 {
-	return other < current; // meghívja a < -t csak megfordítva a bemeneteket
+	return other < *this; // Megfordítjuk a relációt
 }
 
-bool operator>=(const Fraction& current, const Fraction& other)
+bool Fraction::operator>=(const Fraction& other) const
 {
-	return !(current < other); // meghívja a < -t
+	return !(*this < other);
 }
 
 // Converion Operators

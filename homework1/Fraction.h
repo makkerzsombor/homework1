@@ -26,6 +26,14 @@ public:
 	Fraction& operator*=(const Fraction& other);
 	Fraction& operator/=(const Fraction& other);
 
+	// Comparison Operators
+	bool operator==(const Fraction& other) const;
+	bool operator!=(const Fraction& other) const;
+
+	bool operator<(const Fraction& other) const;
+	bool operator<=(const Fraction& other) const;
+	bool operator>(const Fraction& other) const;
+	bool operator>=(const Fraction& other) const;
 
 private:
 	int mNumerator;
@@ -40,16 +48,6 @@ Fraction operator+(const Fraction& current, const Fraction& other);
 Fraction operator-(const Fraction& current, const Fraction& other);
 Fraction operator*(const Fraction& current, const Fraction& other);
 Fraction operator/(const Fraction& current, const Fraction& other);
-
-// Comparison Operators
-
-bool operator==(const Fraction& current, const Fraction& other);
-bool operator!=(const Fraction& current, const Fraction& other);
-
-bool operator<(const Fraction& current, const Fraction& other);
-bool operator<=(const Fraction& current, const Fraction& other);
-bool operator>(const Fraction& current, const Fraction& other);
-bool operator>=(const Fraction& current, const Fraction& other);
 
 // IOStream Operators
 
