@@ -20,6 +20,13 @@ public:
 	// Parse constructor
 	Fraction(const std::string& str);
 
+	// Binary Arithmetic operators
+	Fraction& operator+=(const Fraction& other);
+	Fraction& operator-=(const Fraction& other);
+	Fraction& operator*=(const Fraction& other);
+	Fraction& operator/=(const Fraction& other);
+
+
 private:
 	int mNumerator;
 	int mDenomintator;
@@ -27,18 +34,11 @@ private:
 	int DividedBy(const int a, const int b);
 	void DivideWithThis(const int a);
 };
-// Operators
 
-Fraction& operator+=(Fraction& current, const Fraction& other);
+// Operators (szimmetria miatt maradnak)
 Fraction operator+(const Fraction& current, const Fraction& other);
-
-Fraction& operator-=(Fraction& current, const Fraction& other);
 Fraction operator-(const Fraction& current, const Fraction& other);
-
-Fraction& operator*=(Fraction& current, const Fraction& other);
 Fraction operator*(const Fraction& current, const Fraction& other);
-
-Fraction& operator/=(Fraction& current, const Fraction& other);
 Fraction operator/(const Fraction& current, const Fraction& other);
 
 // Comparison Operators

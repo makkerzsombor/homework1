@@ -95,12 +95,12 @@ void Fraction::DivideWithThis(const int a)
 
 // Operators
 
-Fraction& operator+=(Fraction& current, const Fraction& other)
+Fraction& Fraction::operator+=(const Fraction& other)
 {
-	int newNumerator = (current.GetNumerator() * other.GetDenominator()) + (other.GetNumerator() * current.GetDenominator());
-	int newDenominator = current.GetDenominator() * other.GetDenominator();
-	current = Fraction(newNumerator, newDenominator);
-	return current;
+	int newNumerator = (mNumerator * other.mDenomintator) + (other.mNumerator * mDenomintator);
+	int newDenominator = mDenomintator * other.mDenomintator;
+	*this = Fraction(newNumerator, newDenominator);
+	return *this;
 }
 
 Fraction operator+(const Fraction& current, const Fraction& other)
@@ -109,10 +109,10 @@ Fraction operator+(const Fraction& current, const Fraction& other)
 	return result += other; // meghívja a += -t
 }
 
-Fraction& operator-=(Fraction& current, const Fraction& other)
+Fraction& Fraction::operator-=( const Fraction& other)
 {
-	Fraction negativeOther = Fraction(-other.GetNumerator(), other.GetDenominator());
-	return current += negativeOther;
+	Fraction negativeOther(-other.mNumerator, other.mDenomintator);
+	return *this += negativeOther;
 }
 
 Fraction operator-(const Fraction& current, const Fraction& other)
@@ -121,12 +121,12 @@ Fraction operator-(const Fraction& current, const Fraction& other)
 	return result -= other; // meghívja a -= -t
 }
 
-Fraction& operator*=(Fraction& current, const Fraction& other)
+Fraction& Fraction::operator*=(const Fraction& other)
 {
-	int newNumerator = current.GetNumerator() * other.GetNumerator();
-	int newDenominator = current.GetDenominator() * other.GetDenominator();
-	current = Fraction(newNumerator, newDenominator);
-	return current;
+	int newNumerator = mNumerator * other.mNumerator;
+	int newDenominator = mDenomintator * other.mDenomintator;
+	*this = Fraction(newNumerator, newDenominator);
+	return *this;
 }
 
 Fraction operator*(const Fraction& current, const Fraction& other)
@@ -135,10 +135,10 @@ Fraction operator*(const Fraction& current, const Fraction& other)
 	return result *= other; // meghívja a *= -t
 }
 
-Fraction& operator/=(Fraction& current, const Fraction& other)
+Fraction& Fraction::operator/=( const Fraction& other)
 {
-	Fraction reciprocalOther = Fraction(other.GetDenominator(), other.GetNumerator());
-	return current *= reciprocalOther;
+	Fraction reciprocalOther(other.mDenomintator, other.mNumerator);
+	return *this *= reciprocalOther;
 }
 
 Fraction operator/(const Fraction& current, const Fraction& other)
