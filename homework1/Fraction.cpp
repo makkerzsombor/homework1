@@ -2,20 +2,22 @@
 #include <cmath>
 #include <sstream>
 #include <stdexcept>
+#include <numeric>
 
 Fraction::Fraction(const int numerator, const int denominator)
 	: mNumerator(denominator < 0 ? -numerator : numerator),
 	mDenomintator(denominator < 0 ? -denominator : denominator)
 {
-	// A konstruktor magjába már csak az ellenõrzés és a metódushívás marad!
 	if (denominator == 0)
 	{
 		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
-	int divider = DividedBy(mNumerator, mDenomintator);
+	int divider = std::gcd(mNumerator, mDenomintator);
+
 	if (divider > 1)
 	{
-		DivideWithThis(divider);
+		mNumerator /= divider;
+		mDenomintator /= divider;
 	}
 }
 
@@ -42,32 +44,6 @@ int Fraction::GetDenominator() const
 {
 	return mDenomintator;
 }
-
-int Fraction::DividedBy(const int a, const int b)
-{
-	int c = std::abs(a);
-	int d = std::abs(b);
-
-	if (c == 0)
-	{
-		return 1;
-	}
-
-	while (d) // d != 0; 
-	{
-		int temp = d; 
-		d = c % d; // maradék = c mod d
-		c = temp; // léptetés
-	}
-	return c;
-}
-
-void Fraction::DivideWithThis(const int a)
-{
-	mNumerator /= a;
-	mDenomintator /= a;
-}
-
 // Operators
 
 Fraction& Fraction::operator+=(const Fraction& other)
