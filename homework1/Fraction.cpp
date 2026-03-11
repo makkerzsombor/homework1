@@ -68,12 +68,6 @@ int Fraction::GetDenominator() const
 	return mDenomintator;
 }
 
-Fraction::~Fraction()
-{
-	//std::cout << GetNumerator() << "/" << GetDenominator() << std::endl; // for testing
-	std::cout << "A tort megsemmisult!" << std::endl;
-}
-
 int Fraction::DividedBy(const int a, const int b)
 {
 	int c = std::abs(a);

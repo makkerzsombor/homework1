@@ -12,7 +12,6 @@ public:
 	std::string ToString() const;
 	int GetNumerator() const;
 	int GetDenominator() const;
-	~Fraction();
 	// Conversion operators
 	explicit operator int() const;
 	explicit operator double() const;
