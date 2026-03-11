@@ -1,8 +1,8 @@
-#include "Fragment.h"
+#include "Fraction.h"
 #include <cmath>
 #include <sstream>
 
-Fragment::Fragment(const int numerator, const int denominator) {
+Fraction::Fraction(const int numerator, const int denominator) {
 	if (!denominator)
 	{
 		std::cout << "Nem lehet a nevezo nulla!" << std::endl;
@@ -33,48 +33,48 @@ Fragment::Fragment(const int numerator, const int denominator) {
 	}
 }
 
-Fragment::Fragment(const int numerator)
+Fraction::Fraction(const int numerator)
 {
 	mNumerator = numerator;
 	mDenomintator = 1;
 }
 
-Fragment::Fragment(const double decimal)
+Fraction::Fraction(const double decimal)
 {
 	int precision = 1000000;
 	int num = std::round(decimal * precision);
 	int den = precision;
-	*this = Fragment(num, den);
+	*this = Fraction(num, den);
 }
 
-Fragment::Fragment(const Fragment& other)
+Fraction::Fraction(const Fraction& other)
 {
 	mNumerator = other.mNumerator;
 	mDenomintator = other.mDenomintator;
 }
 
-std::string Fragment::ToString() const
+std::string Fraction::ToString() const
 {
 	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
 }
 
-int Fragment::GetNumerator() const
+int Fraction::GetNumerator() const
 {
 	return mNumerator;
 }
 
-int Fragment::GetDenominator() const
+int Fraction::GetDenominator() const
 {
 	return mDenomintator;
 }
 
-Fragment::~Fragment()
+Fraction::~Fraction()
 {
 	//std::cout << GetNumerator() << "/" << GetDenominator() << std::endl; // for testing
 	std::cout << "A tort megsemmisult!" << std::endl;
 }
 
-int Fragment::DividedBy(const int a, const int b)
+int Fraction::DividedBy(const int a, const int b)
 {
 	int c = std::abs(a);
 	int d = std::abs(b);
@@ -93,7 +93,7 @@ int Fragment::DividedBy(const int a, const int b)
 	return c;
 }
 
-void Fragment::DivideWithThis(const int a)
+void Fraction::DivideWithThis(const int a)
 {
 	mNumerator /= a;
 	mDenomintator /= a;
@@ -101,121 +101,121 @@ void Fragment::DivideWithThis(const int a)
 
 // Operators
 
-Fragment& operator+=(Fragment& current, const Fragment& other)
+Fraction& operator+=(Fraction& current, const Fraction& other)
 {
 	int newNumerator = (current.GetNumerator() * other.GetDenominator()) + (other.GetNumerator() * current.GetDenominator());
 	int newDenominator = current.GetDenominator() * other.GetDenominator();
-	current = Fragment(newNumerator, newDenominator);
+	current = Fraction(newNumerator, newDenominator);
 	return current;
 }
 
-Fragment operator+(const Fragment& current, const Fragment& other) 
+Fraction operator+(const Fraction& current, const Fraction& other)
 {
-	Fragment result = current;
+	Fraction result = current;
 	return result += other; // meghívja a += -t
 }
 
-Fragment& operator-=(Fragment& current, const Fragment& other)
+Fraction& operator-=(Fraction& current, const Fraction& other)
 {
-	Fragment negativeOther = Fragment(-other.GetNumerator(), other.GetDenominator());
+	Fraction negativeOther = Fraction(-other.GetNumerator(), other.GetDenominator());
 	return current += negativeOther;
 }
 
-Fragment operator-(const Fragment& current, const Fragment& other)
+Fraction operator-(const Fraction& current, const Fraction& other)
 {
-	Fragment result = current;
+	Fraction result = current;
 	return result -= other; // meghívja a -= -t
 }
 
-Fragment& operator*=(Fragment& current, const Fragment& other) 
+Fraction& operator*=(Fraction& current, const Fraction& other)
 {
 	int newNumerator = current.GetNumerator() * other.GetNumerator();
 	int newDenominator = current.GetDenominator() * other.GetDenominator();
-	current = Fragment(newNumerator, newDenominator);
+	current = Fraction(newNumerator, newDenominator);
 	return current;
 }
 
-Fragment operator*(const Fragment& current, const Fragment& other) 
+Fraction operator*(const Fraction& current, const Fraction& other)
 {
-	Fragment result = current;
+	Fraction result = current;
 	return result *= other; // meghívja a *= -t
 }
 
-Fragment& operator/=(Fragment& current, const Fragment& other) 
+Fraction& operator/=(Fraction& current, const Fraction& other)
 {
-	Fragment reciprocalOther = Fragment(other.GetDenominator(), other.GetNumerator());
+	Fraction reciprocalOther = Fraction(other.GetDenominator(), other.GetNumerator());
 	return current *= reciprocalOther;
 }
 
-Fragment operator/(const Fragment& current, const Fragment& other) 
+Fraction operator/(const Fraction& current, const Fraction& other)
 {
-	Fragment result = current;
+	Fraction result = current;
 	return result /= other; // meghívja a /= -t
 }
 
-bool operator==(const Fragment& current, const Fragment& other)
+bool operator==(const Fraction& current, const Fraction& other)
 {
 	return (current.GetNumerator() == other.GetNumerator() &&  
 		current.GetDenominator() == other.GetDenominator());
 }
 
-bool operator!=(const Fragment& current, const Fragment& other)
+bool operator!=(const Fraction& current, const Fraction& other)
 {
 	return !(current == other); // meghívja a == -t
 }
 
-bool operator<(const Fragment& current, const Fragment& other) 
+bool operator<(const Fraction& current, const Fraction& other)
 {
 	return (current.GetNumerator() * other.GetDenominator() <
 		current.GetDenominator() * other.GetNumerator());
 }
 
-bool operator<=(const Fragment& current, const Fragment& other) 
+bool operator<=(const Fraction& current, const Fraction& other)
 {
 	return !(current > other); // meghívja a > -t
 }
 
-bool operator>(const Fragment& current, const Fragment& other) 
+bool operator>(const Fraction& current, const Fraction& other)
 {
 	return other < current; // meghívja a < -t csak megfordítva a bemeneteket
 }
 
-bool operator>=(const Fragment& current, const Fragment& other) 
+bool operator>=(const Fraction& current, const Fraction& other)
 {
 	return !(current < other); // meghívja a < -t
 }
 
 // Converion Operators
 
-Fragment::operator int() const
+Fraction::operator int() const
 {
 	return mNumerator / mDenomintator;
 }
 
-Fragment::operator double() const
+Fraction::operator double() const
 {
 	return static_cast<double>(mNumerator) / mDenomintator;
 }
 
-Fragment::operator bool() const
+Fraction::operator bool() const
 {
 	return mNumerator != 0;
 }
 
-Fragment::operator std::string() const
+Fraction::operator std::string() const
 {
 	return ToString();
 }
 
 // IOStream Operators
 
-std::ostream& operator<<(std::ostream& os, const Fragment& fragment)
+std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
 {
 	os << fragment.ToString();
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, Fragment& fragment)
+std::istream& operator>>(std::istream& is, Fraction& fragment)
 {
 	int num = 0, den = 1;
 	char slash; 
@@ -223,7 +223,7 @@ std::istream& operator>>(std::istream& is, Fragment& fragment)
 	is >> num >> slash >> den;
 
 	if (slash == '/') {		
-		fragment = Fragment(num, den);
+		fragment = Fraction(num, den);
 	}
 	else {
 		is.setstate(std::ios::failbit);
@@ -231,7 +231,7 @@ std::istream& operator>>(std::istream& is, Fragment& fragment)
 	return is;
 }
 
-Fragment::Fragment(const std::string& str)
+Fraction::Fraction(const std::string& str)
 {
 	std::stringstream ss(str);
 	int num = 0;
@@ -243,5 +243,5 @@ Fragment::Fragment(const std::string& str)
 	if (ss >> slash && slash == '/') {
 		ss >> den;
 	}
-	*this = Fragment(num, den);
+	*this = Fraction(num, den);
 }
