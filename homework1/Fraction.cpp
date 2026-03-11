@@ -4,20 +4,14 @@
 #include <stdexcept>
 
 Fraction::Fraction(const int numerator, const int denominator)
+	: mNumerator(denominator < 0 ? -numerator : numerator),
+	mDenomintator(denominator < 0 ? -denominator : denominator)
 {
+	// A konstruktor magjába már csak az ellenõrzés és a metódushívás marad!
 	if (denominator == 0)
-	{		
+	{
 		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
-	if (denominator < 0) {
-		mNumerator = -numerator;
-		mDenomintator = -denominator;
-	}
-	else {
-		mNumerator = numerator;
-		mDenomintator = denominator;
-	}
-
 	int divider = DividedBy(mNumerator, mDenomintator);
 	if (divider > 1)
 	{
@@ -26,24 +20,13 @@ Fraction::Fraction(const int numerator, const int denominator)
 }
 
 Fraction::Fraction(const int numerator)
-{
-	mNumerator = numerator;
-	mDenomintator = 1;
-}
+	: mNumerator(numerator), mDenomintator(1) {}
 
 Fraction::Fraction(const double decimal)
-{
-	int precision = 1000000;
-	int num = std::round(decimal * precision);
-	int den = precision;
-	*this = Fraction(num, den);
-}
+	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {}
 
 Fraction::Fraction(const Fraction& other)
-{
-	mNumerator = other.mNumerator;
-	mDenomintator = other.mDenomintator;
-}
+	: mNumerator(other.mNumerator), mDenomintator(other.mDenomintator) {}
 
 std::string Fraction::ToString() const
 {
