@@ -8,7 +8,6 @@ public:
 	Fraction(const int numerator, const int denominator); // constructor with two numbers	
 	Fraction(const int numerator); // constructor with one number	
 	Fraction(const double decimal); // constructor with decimal
-	std::string ToString() const;
 	// Conversion operators
 	explicit operator int() const;
 	explicit operator double() const;

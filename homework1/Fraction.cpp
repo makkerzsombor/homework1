@@ -26,10 +26,6 @@ Fraction::Fraction(const int numerator)
 Fraction::Fraction(const double decimal)
 	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {}
 
-std::string Fraction::ToString() const
-{
-	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
-}
 // Operators
 
 Fraction& Fraction::operator+=(const Fraction& other)
@@ -134,14 +130,14 @@ Fraction::operator bool() const
 
 Fraction::operator std::string() const
 {
-	return ToString();
+	return std::to_string(mNumerator) + "/" + std::to_string(mDenomintator);
 }
 
 // IOStream Operators
 
 std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
 {
-	os << fragment.ToString();
+	os << static_cast<std::string>(fragment);
 	return os;
 }
 
