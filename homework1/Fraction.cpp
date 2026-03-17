@@ -21,11 +21,11 @@ Fraction::Fraction(const int numerator, const int denominator)
 }
 
 Fraction::Fraction(const int numerator)
-	: mNumerator(numerator), mDenominator(1) {
+	: Fraction{ numerator , 1} {
 }
 
 Fraction::Fraction(const double decimal)
-	: Fraction(static_cast<int>(std::round(decimal * 1000000.0)), 1000000) {
+	: Fraction{ static_cast<int>(std::round(decimal * 1000000.0)), 1000000 } {
 }
 // Operators 
 
