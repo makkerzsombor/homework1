@@ -39,8 +39,7 @@ Fraction& Fraction::operator+=(const Fraction& other)
 
 Fraction& Fraction::operator-=(const Fraction& other)
 {
-	Fraction negativeOther(-other.mNumerator, other.mDenominator);
-	return *this += negativeOther;
+	return *this += -other;
 }
 
 Fraction& Fraction::operator*=(const Fraction& other)
@@ -170,4 +169,9 @@ std::istream& operator>>(std::istream& is, Fraction& fragment)
 		is.setstate(std::ios::failbit);
 	}
 	return is;
+}
+
+Fraction Fraction::operator-() const 
+{
+	return Fraction{ -mNumerator, mDenominator };
 }
