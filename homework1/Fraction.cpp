@@ -136,21 +136,27 @@ Fraction::operator std::string() const
 }
 Fraction Fraction::Parse(const std::string& str)
 {
-	std::istringstream iss{str};
+	std::istringstream iss{ str };
 	int num = 0; 
 	int den = 1;
 	char slash;
 
-	iss >> num;
-
-	if (iss >> slash && slash == '/')
+	if (!(iss >> num)) 
 	{
-		iss >> den;
-	}
-	if (den == 0 || iss.fail()) {
 		throw std::invalid_argument(str + " was not suitable!");
 	}
-	return Fraction(num, den);
+	
+	if (iss >> slash) {		
+		if (slash == '/') {			
+			if (!(iss >> den) || den == 0) {
+				throw std::invalid_argument(str + " was not suitable!");
+			}
+		}
+		else {
+			throw std::invalid_argument(str + " was not suitable!");
+		}
+	}
+	return Fraction{ num, den };
 }
 
 std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
