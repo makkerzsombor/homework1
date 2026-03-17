@@ -42,8 +42,8 @@ public:
 	bool operator>=(const Fraction& other) const;
 
 private:
-	int mNumerator;
-	int mDenominator; 
+	int mNumerator{ 0 };
+	int mDenominator{ 1 };
 };
 
 // IOStream Operators
