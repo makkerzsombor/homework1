@@ -6,6 +6,7 @@
 class Fraction {
 public:
 	// Constructors
+	Fraction() = default;
 	Fraction(const int numerator, const int denominator);
 	Fraction(const int numerator);
 	Fraction(const double decimal);
@@ -22,6 +23,9 @@ public:
 	Fraction& operator-=(const Fraction& other);
 	Fraction& operator*=(const Fraction& other);
 	Fraction& operator/=(const Fraction& other);
+
+	// Inverse Operator
+	Fraction operator-() const;
 
 	// Binary Arithmetic Operators
 	Fraction operator+(const Fraction& other) const;
