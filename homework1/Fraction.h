@@ -49,3 +49,8 @@ private:
 // IOStream Operators
 std::ostream& operator<<(std::ostream& os, const Fraction& fragment);
 std::istream& operator>>(std::istream& is, Fraction& fragment);
+
+Fraction operator+(const int number, const Fraction& fraction);
+Fraction operator-(const int number, const Fraction& fraction);
+Fraction operator*(const int number, const Fraction& fraction);
+Fraction operator/(const int number, const Fraction& fraction);

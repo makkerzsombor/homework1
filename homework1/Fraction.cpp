@@ -175,3 +175,23 @@ Fraction Fraction::operator-() const
 {
 	return Fraction{ -mNumerator, mDenominator };
 }
+
+Fraction operator+(const int number, const Fraction& fraction)
+{
+	return fraction + number;
+}
+
+Fraction operator-(const int number, const Fraction& fraction)
+{
+	return -fraction + number;
+}
+
+Fraction operator*(const int number, const Fraction& fraction)
+{
+	return fraction * number;
+}
+
+Fraction operator/(const int number, const Fraction& fraction)
+{
+	return Fraction{ number } / fraction;
+}
