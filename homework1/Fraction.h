@@ -41,6 +41,8 @@ public:
 	bool operator>(const Fraction& other) const;
 	bool operator>=(const Fraction& other) const;
 
+	friend std::istream& operator>>(std::istream& is, Fraction& fraction);
+
 private:
 	int mNumerator{ 0 };
 	int mDenominator{ 1 };
@@ -48,7 +50,6 @@ private:
 
 // IOStream Operators
 std::ostream& operator<<(std::ostream& os, const Fraction& fragment);
-std::istream& operator>>(std::istream& is, Fraction& fragment);
 
 Fraction operator+(const int number, const Fraction& fraction);
 Fraction operator-(const int number, const Fraction& fraction);

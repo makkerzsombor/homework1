@@ -130,21 +130,25 @@ Fraction::operator bool() const
 
 Fraction::operator std::string() const
 {
-	return std::to_string(mNumerator) + "/" + std::to_string(mDenominator);
+	std::ostringstream oss;
+	oss << mNumerator << "/" << mDenominator;
+	return oss.str();
 }
 Fraction Fraction::Parse(const std::string& str)
 {
-	std::stringstream ss(str);
-	int num = 0;
+	std::istringstream iss{str};
+	int num = 0; 
 	int den = 1;
 	char slash;
-	ss >> num;
 
-	if (ss >> slash && slash == '/') {
-		ss >> den;
+	iss >> num;
+
+	if (iss >> slash && slash == '/')
+	{
+		iss >> den;
 	}
-	if (den == 0) {
-		throw std::invalid_argument("Hiba a parszolasnal: A nevezo nem lehet nulla!");
+	if (den == 0 || iss.fail()) {
+		throw std::invalid_argument(str + " was not suitable!");
 	}
 	return Fraction(num, den);
 }
