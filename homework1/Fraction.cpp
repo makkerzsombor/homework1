@@ -5,19 +5,13 @@
 #include <numeric>
 
 Fraction::Fraction(const int numerator, const int denominator)
-	: mNumerator(denominator < 0 ? -numerator : numerator),
-	mDenominator(denominator < 0 ? -denominator : denominator)
+	: mNumerator{ numerator }
+	, mDenominator{ denominator }
 {
-	if (denominator == 0)
-	{
+	if (mDenominator == 0) {
 		throw std::invalid_argument("Hiba: A nevezo nem lehet nulla!");
 	}
-	int divider = std::gcd(mNumerator, mDenominator);
-	if (divider > 1)
-	{
-		mNumerator /= divider;
-		mDenominator /= divider;
-	}
+	Simplify(); // Rábízzuk a munkát!
 }
 
 Fraction::Fraction(const int numerator)
@@ -31,9 +25,9 @@ Fraction::Fraction(const double decimal)
 
 Fraction& Fraction::operator+=(const Fraction& other)
 {
-	int newNumerator = (mNumerator * other.mDenominator) + (other.mNumerator * mDenominator);
-	int newDenominator = mDenominator * other.mDenominator;
-	*this = Fraction(newNumerator, newDenominator);
+	mNumerator = (mNumerator * other.mDenominator) + (other.mNumerator * mDenominator);
+	mDenominator *= other.mDenominator;
+	Simplify(); // Rábízzuk a munkát!
 	return *this;
 }
 
@@ -44,9 +38,9 @@ Fraction& Fraction::operator-=(const Fraction& other)
 
 Fraction& Fraction::operator*=(const Fraction& other)
 {
-	int newNumerator = mNumerator * other.mNumerator;
-	int newDenominator = mDenominator * other.mDenominator;
-	*this = Fraction(newNumerator, newDenominator);
+	mNumerator *= other.mNumerator;
+	mDenominator *= other.mDenominator;
+	Simplify(); // Rábízzuk a munkát!
 	return *this;
 }
 
@@ -94,7 +88,7 @@ bool Fraction::operator!=(const Fraction& other) const
 
 bool Fraction::operator<(const Fraction& other) const
 {
-	return (mNumerator * other.mDenominator < mDenominator * other.mNumerator);
+	return static_cast<double>(*this) < static_cast<double>(other);
 }
 
 bool Fraction::operator<=(const Fraction& other) const
@@ -134,28 +128,24 @@ Fraction::operator std::string() const
 	oss << mNumerator << "/" << mDenominator;
 	return oss.str();
 }
+
 Fraction Fraction::Parse(const std::string& str)
 {
 	std::istringstream iss{ str };
-	int num = 0; 
-	int den = 1;
+	int num{ 0 };
+	int den{ 1 };
 	char slash;
 
-	if (!(iss >> num)) 
-	{
+	if (!(iss >> num)) {
 		throw std::invalid_argument(str + " was not suitable!");
 	}
-	
+
 	if (iss >> slash) {		
-		if (slash == '/') {			
-			if (!(iss >> den) || den == 0) {
-				throw std::invalid_argument(str + " was not suitable!");
-			}
-		}
-		else {
+		if (slash != '/' || !(iss >> den) || den == 0) {
 			throw std::invalid_argument(str + " was not suitable!");
 		}
 	}
+
 	return Fraction{ num, den };
 }
 
@@ -165,15 +155,22 @@ std::ostream& operator<<(std::ostream& os, const Fraction& fragment)
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, Fraction& fragment)
+std::istream& operator>>(std::istream& is, Fraction& fraction)
 {
-	int num = 0, den = 1;
+	int num{ 0 }, den{ 1 };
 	char slash;
 
-	is >> num >> slash >> den;
-
-	if (slash == '/') {
-		fragment = Fraction(num, den);
+	// Ha mindent sikeresen beolvasott a stream, és a karakter tényleg '/'
+	if (is >> num >> slash >> den && slash == '/') {
+		if (den == 0) {
+			is.setstate(std::ios::failbit);
+		}
+		else {
+			// HELYBEN MÓDOSÍTUNK! Nincs új Fraction példány!
+			fraction.mNumerator = num;
+			fraction.mDenominator = den;
+			fraction.Simplify();
+		}
 	}
 	else {
 		is.setstate(std::ios::failbit);
@@ -204,4 +201,17 @@ Fraction operator*(const int number, const Fraction& fraction)
 Fraction operator/(const int number, const Fraction& fraction)
 {
 	return Fraction{ number } / fraction;
+}
+
+void Fraction::Simplify()
+{
+	if (mDenominator < 0) {
+		mNumerator = -mNumerator;
+		mDenominator = -mDenominator;
+	}
+	const int divider = std::gcd(mNumerator, mDenominator);
+	if (divider > 1) {
+		mNumerator /= divider;
+		mDenominator /= divider;
+	}
 }

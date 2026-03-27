@@ -46,6 +46,8 @@ public:
 private:
 	int mNumerator{ 0 };
 	int mDenominator{ 1 };
+
+	void Simplify();
 };
 
 // IOStream Operators
