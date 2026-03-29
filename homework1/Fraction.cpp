@@ -46,7 +46,7 @@ Fraction& Fraction::operator*=(const Fraction& other)
 
 Fraction& Fraction::operator/=(const Fraction& other)
 {
-	Fraction reciprocalOther(other.mDenominator, other.mNumerator);
+	const Fraction reciprocalOther(other.mDenominator, other.mNumerator);
 	return *this *= reciprocalOther;
 }
 
@@ -135,17 +135,9 @@ Fraction Fraction::Parse(const std::string& str)
 	int num{ 0 };
 	int den{ 1 };
 	char slash;
-
-	if (!(iss >> num)) {
+	if (!(iss >> num) || (iss >> slash && (slash != '/' || !(iss >> den) || den == 0))) {
 		throw std::invalid_argument(str + " was not suitable!");
 	}
-
-	if (iss >> slash) {		
-		if (slash != '/' || !(iss >> den) || den == 0) {
-			throw std::invalid_argument(str + " was not suitable!");
-		}
-	}
-
 	return Fraction{ num, den };
 }
 
